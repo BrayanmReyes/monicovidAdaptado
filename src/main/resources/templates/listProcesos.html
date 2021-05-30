@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Procesos</title>
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/imagenes/icons/icon.ico}"></link>
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://kit.fontawesome.com/814638b048.js" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+
+	<div class="container">
+	<form th:action="@{/proceso/BuscarCodigo/}" method="get">
+					<div class="form-row align-items-center">
+						<div class="form-group col-md-3">
+							<input id="username" type="text" class="form-control"
+								name="username" placeholder="Buscar usuario por código (username)">
+								
+						</div>
+						<div class="form-group col-auto">
+							<button type="submit" class="btn btn-success">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+						</div>
+					</div>
+		</form>
+		<form id="myform">
+			<div class="row clearfix">
+				<div class="col-md-12 column">			
+					
+					<table class="table table-bordered table-hover table-striped"
+						id="tab_logic">
+						<thead>
+							<tr>
+								<th class="text-center">ID</th>
+								<th class="text-center">CÓDIGO PROCESO</th>
+								<th class="text-center">TIPO</th>
+								<th class="text-center">DESCRIPCION</th>
+								<th class="text-center">TESISTA</th>
+								<th class="text-center">FECHA DE REGISTRO/ACTUALIZACIÓN</th>
+								<th class="text-center">FECHA DE PRESENTACIÓN</th>
+								<th class="text-center">LINK DEL DOCUMENTO</th>
+								<th class="text-center">VER DOCUMENTO</th>
+								<th class="text-center">OPERACIÓN</th>
+								<th class="text-center">OPERACIÓN</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="p: ${listaProcesos}">
+							<td th:text="${p.idProceso}"></td>
+							<td th:text="${p.codigoProceso}"></td>
+							<td th:text="${p.tipoProceso}"></td>
+							<td th:text="${p.nombreProceso}"></td>
+								<td th:text="${p.estudiante.nombre}+' '+${p.estudiante.apellido}"></td>
+								<td th:text="${p.fechaRegistro}"></td>
+								<td th:text="${p.fechaPresentacion}"></td>
+								<td th:text="${p.linkDocumento}"></td>
+								<td><a th:href="${p.linkDocumento}" target="_blank">Ver documento</a></td>	
+								<td align="center"><a type="button" class="btn btn-danger" th:href="@{/proceso/eliminar?id=}+${p.idProceso}"><i class="fas fa-trash-alt"></i>	Eliminar</a></td>
+								<td align="center"><a type="button" class="btn btn-success" th:href="@{'/proceso/modificar/' + ${p.idProceso}}"><i class="fas fa-edit"></i>	Modificar</a></td>
+							</tr>
+						</tbody>
+
+					</table>
+
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

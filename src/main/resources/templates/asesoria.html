@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Asesoria</title>
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/imagenes/icons/icon.ico}"></link>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/asesor.js}"></script>
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<form th:action="@{/asesoria/registrar}" method="post"
+			th:object="${asesoria}">
+			<div class="form-group">
+				<label for="idAsesoria">ID:</label> 
+				<input type="text" th:field="*{idAsesoria}"></input>
+				
+				<div class="form-group">
+				<label for="codigoAsesoria">CÓDIGO ASESORIA:</label> 
+				<input type="text"	th:field="*{codigoAsesoria}"
+				class="form-control" id="codigoAsesoria" maxlength="10"></input>
+				<div class="alert alert-danger" 
+				th:if="${#fields.hasErrors('codigoAsesoria')}"
+				th:errors="*{codigoAsesoria}"></div>
+				</div>
+
+				<div class="form-group">
+				<label for="estudiante">CÓDIGO TESISTA:</label> 
+					<select class="form-control" th:field="*{estudiante.id}"> 
+						<option th:each="c: ${listaEstudiantes}" th:value="${c.id}" 
+						th:text="${c.nombre}" 
+						th:selected="(${c.id} == *{estudiante.id})"></option>
+					</select>
+				</div>
+				
+				<div class="form-group">
+				<label for="asesor">CÓDIGO ASESOR:</label> 
+					<select class="form-control" th:field="*{asesor.id}">
+						<option th:each="c: ${listaAsesors}" th:value="${c.id}" 
+						th:text="${c.nombre}" 
+						th:selected="(${c.id} == *{asesor.id})"></option>
+					</select>
+				</div>	
+				
+			</div>
+			<button type ="submit" class="btn btn-primary">Aceptar</button>
+			<a href="/asesoria/listar" class="btn btn-danger">Cancelar</a>
+		</form>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

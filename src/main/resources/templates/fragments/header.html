@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8"></meta>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
+<link rel="stylesheet" th:href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js"></script>
+<script src="https://kit.fontawesome.com/814638b048.js" crossorigin="anonymous"></script>	
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js"></script>
+
+<link rel="stylesheet" th:href="@{/js/popper.min.css}" />	
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/814638b048.js" crossorigin="anonymous"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- INCIO  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- FIN -->
+</head>
+<body>
+	
+	<div th:fragment="header">
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">	
+	
+		<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" th:href="@{/inicio/bienvenido}"><img th:src="@{/imagenes/logo/logounasam.png}" class="logo" style="width:70px; height:70px;"></a>
+				</div>
+				<div id="navbar" class="navbar">
+					<ul class="nav navbar-nav" style="margin-top:30px;margin-left:30px;">			
+						<li class="nav-item"><a class="navbar-brand" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/usuario/lista}">USUARIOS</a></li>
+						<li class="nav-item"><a class="navbar-brand" sec:authorize="hasRole('ROLE_ESTUDIANTE')" th:href="@{/estudiante/perfil}">MI PERFIL</a></li>
+						<li class="nav-item"><a class="navbar-brand" sec:authorize="hasRole('ROLE_ASESOR')" th:href="@{/encargado/perfil}">MI PERFIL</a></li>
+						<li class="nav-item"><a class="navbar-brand" sec:authorize="hasRole('ROLE_JUEZ')" th:href="@{/encargado/perfil}">MI PERFIL</a></li>
+						<li class="nav-item"><a class="navbar-brand" sec:authorize="hasRole('ROLE_MIXTO')" th:href="@{/encargado/perfil}">MI PERFIL</a></li>
+						<li class="active"><a class="navbar-brand" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/usuario/listaProcesos}">REALIZAR PROCESOS A TESISTAS</a></li>
+						<li class="active"><a class="navbar-brand" th:href="@{/tesis/irRegistrar2}">AGREGAR UN PLAN DE TESIS</a></li>
+						<li class="active"><a class="navbar-brand" th:href="@{/tesis/listar2}">VER PLANES DE TESIS</a></li>
+						<li class="nav-item"><a class="navbar-brand" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/proceso/listar}">TODO LOS PROCESOS</a></li>
+						<li class="nav-item"><a class="navbar-brand" sec:authorize="hasRole('ROLE_ESTUDIANTE')" th:href="@{/estudiante/procesos}">MIS PROCESOS</a></li>
+						<li class="nav-item dropdown" ><a sec:authorize="hasRole('ROLE_ADMIN')" 
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="true" style="font-size:14px;"> Mantenimiento RELACION</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#" th:href="@{/asesoria/listar}">RELACION ASESOR-TESISTA</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#" th:href="@{/evaluacion/listar}">RELACION JUECES-TESISTA</a>
+						</div>
+					</li>
+					</ul>
+					
+				</div>
+				<ul class="navbar-nav navbar-right">
+					<li class="dropdown show"><a
+						class="btn btn-outline-primary dropdown-toggle" href="#"
+						role="button" id="dropdownMenuLink" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> <span
+							sec:authentication="name"></span>
+					</a>
+						<div class="dropdown-menu">
+							<form id="logoutForm" th:action="@{/logout}" method="post">
+								<button class="dropdown-item"
+									onclick="document.getElementById('logoutForm').submit();"
+									type="submit">Cerrar Sesion</button>
+							</form>
+							<form id="changePassword" th:action="@{/sesion/irModificarContrasenia}" method="post">
+								<button class="dropdown-item"
+									type="submit">Cambiar Contraseña</button>
+							</form>
+						</div></li>		
+				</ul>				
+			</div>
+			
+		</nav>
+	</div>
+
+</body>
+
+</html>

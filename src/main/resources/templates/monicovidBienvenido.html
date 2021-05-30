@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Bienvenido</title>
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/imagenes/icons/icon.ico}"></link>
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://kit.fontawesome.com/814638b048.js" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div th:replace="fragments/monicovidHeader :: header"></div>
+
+	<div class="container">
+		<form id="myform">
+			<h4>BIENVENIDO A MONICOVID: </h4>
+			<h4 sec:authentication="name"></h4>
+			<br>
+			<h4 sec:authorize="hasRole('ROLE_ADMIN')">Eres Admin.</h4>
+        	<h4 sec:authorize="hasRole('ROLE_USER')">Eres usuario</h4>
+		</form>
+
+	</div>	
+	<div th:replace="fragments/monicovidFooter :: footer"></div>
+
+</body>
+</html>

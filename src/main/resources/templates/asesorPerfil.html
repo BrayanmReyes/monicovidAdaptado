@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Usuarios</title>
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/imagenes/icons/icon.ico}"></link>
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://kit.fontawesome.com/814638b048.js" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+
+	<div class="container">
+		<form id="myform">
+					<br>
+			<h3>Lista de Estudiantes</h3>
+				<br>
+			<div class="row clearfix">
+			
+				<div class="col-md-12 mt-5 column">
+					<table class="table table-bordered table-hover table-striped"
+						id="tab_logic">
+						<thead>
+							<tr>
+								<th class="text-center">NOMBRE</th>
+								<th class="text-center">APELLIDO</th>
+								<th class="text-center">EMAIL</th>
+								<th class="text-center">GRADO</th>
+								<th class="text-center">OPCIÓN</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="p: ${listaEstudiantes}">
+								<td align="center" th:text="${p.estudiante.nombre}"></td>
+								<td align="center" th:text="${p.estudiante.apellido}"></td>
+								<td align="center" th:text="${p.estudiante.email}"></td>
+								<td align="center" th:text="${p.estudiante.grado}"></td>
+								<td align="center"><a type="button" class="btn btn-success" th:href="@{'/sesion/verUsuario/' + ${p.estudiante.id}}"><i class="fas fa-eye"></i>	Ver Info</a></td>
+							</tr>
+						</tbody>
+
+					</table>
+				</div>
+			</div>
+		<br>
+	</form>
+
+	</div>	
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

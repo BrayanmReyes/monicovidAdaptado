@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Proceso</title>
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/imagenes/icons/icon.ico}"></link>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/asesor.js}"></script>
+</head>
+<body>
+<script type="text/javascript">
+function cambioOpciones()
+{ 
+    var element = document.getElementById('content');
+    var showId = document.getElementById('opciones').value;
+    document.getElementById('showId').value = showId;
+    if (showId=="DOCUMENTO") {
+        element.style.display='block';
+    }
+    else {
+        element.style.display='none';
+    }
+
+}
+
+function cambioOpciones2()
+{ 
+    var element = document.getElementById('content2');
+    var showId = document.getElementById('opciones').value;
+    document.getElementById('showId').value = showId;
+    if (showId=="FECHA") {
+        element.style.display='block';
+    }
+    else {
+        element.style.display='none';
+    }
+
+}
+</script>
+
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<form th:action="@{/proceso/registrar}" method="post"
+			th:object="${proceso}">
+			<div class="form-group">
+				<label for="idProceso">ID:</label> 
+				<input type="text" th:field="*{idProceso}" readonly="readonly"
+				class="form-control" id="idProceso"></input>
+				
+				<div class="form-group">
+				<label for="estudiante">ID TESISTA:</label>
+				<input type="text"	th:field="*{estudiante.id}" readonly="readonly"
+				class="form-control" id="estudiante" maxlength="10"></input> 
+				</div>
+				
+				<div class="form-group">
+				<label for="codigoProceso">CÓDIGO PROCESO:</label> 
+				<input type="text"	th:field="*{codigoProceso}" readonly="readonly"
+				class="form-control" id="codigoProceso" maxlength="10"></input>
+				<div class="alert alert-danger" 
+				th:if="${#fields.hasErrors('codigoProceso')}"
+				th:errors="*{codigoProceso}"></div>
+				</div>
+
+				<div class="form-group">
+				<label for="nombreProceso">NOMBRE PROCESO:</label> 
+				<input type="text"	th:field="*{nombreProceso}"
+				class="form-control" id="nombreProceso"></input>
+				<div class="alert alert-danger" 
+				th:if="${#fields.hasErrors('nombreProceso')}"
+				th:errors="*{nombreProceso}"></div>
+				</div>
+				
+				<div class="form-group">
+				<label for="fechaRegistro">FECHA DE REGISTRO/ACTUALIZACION:</label> 
+				<input type="date"	th:field="*{fechaRegistro}"
+				class="form-control" id="fechaRegistro"></input>
+				<div class="alert alert-danger" 
+				th:if="${#fields.hasErrors('fechaRegistro')}"
+				th:errors="*{fechaRegistro}"></div>
+				</div>
+				
+				<div class="form-group">
+				<label for="tipoProceso" style="margin-left:2%;" >TIPO PROCESO:</label> 
+				<select class="form-control" th:field="*{tipoProceso}" id='opciones' name="opciones" onchange='cambioOpciones(); cambioOpciones2();'>
+				        <option value=" "> </option>        
+				        <option value='DOCUMENTO'>DOCUMENTO</option>
+				        <option value='FECHA'>FECHA</option>
+				</select>
+				</div>
+				<input type="hidden"  name="showId"  id='showId' value="" />
+				
+				<div id="content" style="display: none;">				
+				<div class="form-group">
+				<label for="linkDocumento">LINK DEL DOCUMENTO:</label> 
+				<input type="text"	th:field="*{linkDocumento}"
+				class="form-control" id="tipoProceso"></input>
+				<div class="alert alert-danger" 
+				th:if="${#fields.hasErrors('linkDocumento')}"
+				th:errors="*{linkDocumento}"></div>
+				</div>
+				</div>
+				
+				<div id="content2" style="display: none;">
+				<div class="form-group">
+				<label for="fechaPresentacion">FECHA DE PRESENTACIÓN:</label> 
+				<input type="date"	th:field="*{fechaPresentacion}"
+				class="form-control" id="fechaPresentacion"></input>
+				<div class="alert alert-danger" 
+				th:if="${#fields.hasErrors('fechaPresentacion')}"
+				th:errors="*{fechaPresentacion}"></div>
+				</div>
+				</div>
+			</div>
+			<button type ="submit" class="btn btn-primary">Aceptar</button>
+			<a href="/proceso/listar" class="btn btn-danger">Cancelar</a>
+		</form>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

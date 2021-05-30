@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Perfil del alumno</title>
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/imagenes/icons/icon.ico}"></link>
+<link rel="stylesheet" th:href="@{/css/style.css}" />	
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://kit.fontawesome.com/814638b048.js" crossorigin="anonymous"></script>
+<style type="text/css"></style>
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+
+	<div class="container">
+		<form id="myform">
+					<br>
+			<h3>Información del estudiante</h3>
+				<br>
+			<div class="info-alumno">
+			<div class="col-md-4 col-12">
+			<label for="nombreProfesor">Nombre:</label>
+			<p th:text="${estudiante.nombre}"></p>
+			</div>
+			<div class="col-md-4 col-12">
+			<label for="apellidoProfesor">Apellido:</label>
+			<p th:text="${estudiante.apellido}"></p>
+			</div>
+			<div class="col-md-4 col-12">
+			<label for="correoProfesor">Correo:</label>
+			<p th:text="${estudiante.email}"></p>
+			</div>
+			<div class="col-md-4 col-12">
+			<label for="correoProfesor">Grado:</label>
+			<p th:text="${estudiante.grado}"></p>
+			</div>
+			<div class="col-md-4 col-12">
+			<label for="Ciclo de Ingreso">Ciclo de Ingreso:</label>
+			<p th:text="${estudiante.cicloIngreso}"></p>
+			</div>
+			<div class="col-md-4 col-12">
+			<label for="Ciclo de Egreso">Ciclo de Egreso:</label>
+			<p th:text="${estudiante.cicloEgreso}"></p>
+			</div>
+			</div>
+					<div th:if="${mensaje}" class="alert alert-info">
+			<p th:text="${mensaje}"></p>
+		</div>		
+		
+	</form>
+
+	</div>	
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

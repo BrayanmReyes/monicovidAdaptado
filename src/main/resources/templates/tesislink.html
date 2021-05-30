@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TESIS</title>
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/imagenes/icons/icon.ico}"></link>
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://kit.fontawesome.com/814638b048.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div class="container">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<h2>PLAN DE TESIS</h2>
+				<div class="alert alert-warning alert-dismissible fade show" role="alert" th:if="${successmessage}">
+				 <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+				  <strong th:text="${successmessage}"></strong>
+				</div>
+				
+				<div class="alert alert-warning alert-dismissible fade show" role="alert" th:if="${errormessage}">
+				 <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+				  <strong th:text="${errormessage}"></strong>
+				</div>
+				
+				<form th:action="@{/tesis/registrar}" method="post"
+						th:object="${tesis}" enctype="multipart/form-data">
+					<div class="form-group">
+					<label for="name">NOMBRE DE TU PLAN DE TESIS</label> 
+					<input type="text"	th:field="*{name}"class="form-control" id="name"></input>
+					</div>
+					<div class="form-group">
+					<label for="name">ID DEL TESISTA (VERIFIQUE QUE SU ID ES CORRECTO)</label> 
+					<input type="text"	th:field="*{estudiante.id}"
+					class="form-control" id="name"></input>
+					<div class="alert alert-danger" 
+						th:if="${#fields.hasErrors('estudiante')}"
+						th:errors="*{estudiante}"></div>
+					</div>
+					<!--  
+					<div class="form-group">
+						<label for="estudiante">CÓDIGO TESISTA:</label>
+						<label  th:text="*{estudiante.id}"></label> 
+						<input type="hidden" th:field="*{estudiante.id}"
+						class="form-control" id="estudiante"></input>
+						<div class="alert alert-danger" 
+						th:if="${#fields.hasErrors('estudiante')}"
+						th:errors="*{estudiante}"></div>				
+					</div>
+					-->
+					<div class="form-group">
+					<label for="name">URL DE TU ARCHIVO</label> 
+					<input type="text" th:field="*{fileslink}"class="form-control" id="fileslink"></input>
+					</div>
+					
+					<div>
+					<button type ="submit" class="btn btn-primary">ACEPTAR</button>		
+					</div>			
+					
+				</form>
+				<hr/>
+			</div>
+
+		</div>
+	</div>
+</div>	
+	
+	
+	
+<div th:replace="fragments/footer :: footer"></div>
+
+
+
+</body>
+<style type="text/css">
+.imagecontainer{
+position: relative;
+width: 100%;
+max-width: 400px;
+}
+.overlay{
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+height: 100%;
+width: 100%;
+opacity: 0;
+transition: .3s ease;
+border-radius: 50%;
+}
+.imagecontainer:hover .overlay{
+opacity: 1;
+}
+.icon {
+color: white;
+font-size: 40px;
+position: absolute;
+top: 50%;
+left: 50%;
+transform : translate(-50%,-50%);
+-ms-transform : translate(-50%,-50%);
+text-align: center;
+}
+
+.fa-trash:hover{
+color: red;
+
+}
+
+</style>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Designar</title>
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/imagenes/icons/icon.ico}"></link>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/asesor.js}"></script> 
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<form th:action="@{/evaluacion/registrar}" method="post"
+			th:object="${Evaluacion}">
+			
+			<div class="form-group">
+				<label for="idEvaluacionr">ID:</label> 
+				<input type="text" th:field="*{idEvaluacion}" readonly="readonly"
+				class="form-control" id="codigoEvaluacion" ></input>
+				
+				<div class="form-group">
+				<label for="codigoEvaluacion">Código:</label> 
+				<input type="text"	th:field="*{codigoEvaluacion}" readonly="readonly"
+				class="form-control" id="codigoEvaluacion" maxlength="10"></input>
+				<div class="alert alert-danger" 
+				th:if="${#fields.hasErrors('codigoEvaluacion')}"
+				th:errors="*{codigoEvaluacion}"></div>
+				</div>
+				
+				<div class="form-group">
+				<label for="asesoria">ID Asesoria:</label> 
+				<input type="text"	th:field="*{asesoria.idAsesoria}" readonly="readonly"
+				class="form-control" id="asesoria" maxlength="10"></input>
+				<div class="alert alert-danger" 
+				th:if="${#fields.hasErrors('asesoria')}"
+				th:errors="*{asesoria}"></div>
+				</div>
+				
+				<div class="form-group">
+				<label for="asesoria">CÓDIGO DEL ESTUDIANTE:</label> 
+				<input type="text"	th:field="*{asesoria.estudiante.username}" readonly="readonly"
+				class="form-control" id="asesoria" maxlength="10"></input>	
+				</div>
+				<div class="form-group">
+				<label for="juez1">CÓDIGO JURADO PRINCIPAL:</label> 
+					<select class="form-control" th:field="*{juez1.id}">
+						<option th:each="c: ${listaJuezs}" th:value="${c.id}" 
+						th:text="${c.nombre}+' '+${c.apellido}" 
+						th:selected="(${c.id} == *{juez1.id})"></option>
+					</select>
+				</div>	
+				
+				<div class="form-group">
+				<label for="juez2">CÓDIGO JURADO 2:</label> 
+					<select class="form-control" th:field="*{juez2.id}">
+						<option th:each="c: ${listaJuezs}" th:value="${c.id}" 
+						th:text="${c.nombre}+' '+${c.apellido}" 
+						th:selected="(${c.id} == *{juez2.id})"></option>
+					</select>
+				</div>	
+								<div class="form-group">
+				<label for="juez3">CÓDIGO JURADO 3:</label> 
+					<select class="form-control" th:field="*{juez3.id}">
+						<option th:each="c: ${listaJuezs}" th:value="${c.id}" 
+						th:text="${c.nombre}+' '+${c.apellido}" 
+						th:selected="(${c.id} == *{juez3.id})"></option>
+					</select>
+				</div>	
+				
+							
+			</div>
+			
+			<button type ="submit" class="btn btn-primary">Aceptar</button>
+			<a href="/usuario/listaProcesos" class="btn btn-danger">Cancelar</a>
+		</form>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

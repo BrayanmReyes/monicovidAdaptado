@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Usuarios</title>
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/imagenes/icons/icon.ico}"></link>
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://kit.fontawesome.com/814638b048.js" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+
+	<div class="container">
+		<form id="myform">
+			<h3>MIS DATOS</h3>
+			<div class="row clearfix">
+			
+				<div class="col-md-12 mt-5 column">
+					<table class="table table-bordered table-hover table-striped"
+						id="tab_logic">
+						<thead>
+							<tr>
+								<th class="text-center">MI NOMBRE</th>
+								<th class="text-center">MI ID</th>
+								<th class="text-center">MI CÓDIGO (USERNAME)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="p: ${listaTesista}">
+								<td align="center" th:text="${p.nombre}+' '+${p.apellido}"></td>
+								<td align="center" th:text="${p.id}"></td>
+								<td align="center" th:text="${p.username}"></td>
+							</tr>
+						</tbody>
+
+					</table>
+				</div>
+			</div>
+			<h3>Lista de Asesores</h3>
+				<br>
+			<div class="row clearfix">
+			
+				<div class="col-md-12 mt-5 column">
+					<table class="table table-bordered table-hover table-striped"
+						id="tab_logic">
+						<thead>
+							<tr>
+								<th class="text-center">NOMBRES Y APELLIDOS</th>
+								<th class="text-center">EMAIL</th>
+								<th class="text-center">GRADO</th>
+								<th class="text-center">TELEFONO</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="p: ${listaAsesorias}">
+								<td align="center" th:text="${p.asesor.nombre} +' '+${p.asesor.apellido}"></td>
+								<td align="center" th:text="${p.asesor.email}"></td>
+								<td align="center" th:text="${p.asesor.grado}"></td>
+								<td align="center" th:text="${p.asesor.telefono}"></td>
+							</tr>
+						</tbody>
+
+					</table>
+				</div>
+			</div>
+		<br>
+			<h3>Lista de Jueces</h3>
+				
+			<div class="row clearfix">
+			
+				<div class="col-md-12 mt-5 column">
+					<table class="table table-bordered table-hover table-striped"
+						id="tab_logic">
+						<thead>
+							<tr>
+								<th class="text-center">NOMBRES Y APELLIDOS</th>
+								<th class="text-center">EMAIL</th>
+								<th class="text-center">GRADO</th>
+								<th class="text-center">TELEFONO</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="p: ${listaJueces}">
+								<td align="center" th:text="${p.nombre} +' '+${p.apellido}"></td>
+								<td align="center" th:text="${p.email}"></td>
+								<td align="center" th:text="${p.grado}"></td>
+								<td align="center" th:text="${p.telefono}"></td>
+							</tr>
+						</tbody>
+
+					</table>
+				</div>
+			</div>
+			<div class="alert alert-success alert-dismissible fade show" role="alert" style="opacity:1;" th:if="${successmessage}"> 
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+		<strong th:text="${successmessage}"></strong>
+		</div>
+		<br>
+		<br>
+		<br>
+		
+	</form>
+
+	</div>	
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>
